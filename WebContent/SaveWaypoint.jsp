@@ -1,0 +1,59 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<html>
+<head>
+<title>Save Waypoint</title>
+</head>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwoEmCllYbtI7sZzpLfq4WVXWSvnC-7X8"></script>
+<!-- >script src="json2.js"></script-->
+<body onLoad="initialize()">
+<div id="mappy" style="width:900px; height:550px;"></div>
+<div style="width:900px; text-align:center; margin:0px auto 0px auto; margin-top:10px;">
+    <form action="SaveWaypoint" name="SaveWaypoint"
+								method="post" onClick="save_waypoints()"><input type="button" value="Save Waypoints" ></form>
+</div>
+</body>
+<script>
+var map, ren, ser;
+var data = {};
+function initialize()
+{
+    map = new google.maps.Map( document.getElementById('mappy'), {'zoom':12, 'mapTypeId': google.maps.MapTypeId.ROADMAP, 'center': new google.maps.LatLng(12.934797,80.2107631), })
+ 
+    ren = new google.maps.DirectionsRenderer( {'draggable':true} );
+    ren.setMap(map);
+    ser = new google.maps.DirectionsService();
+     
+    ser.route({ 'origin': new google.maps.LatLng(26.104887637199948, -80.39231872768141), 'destination':  new google.maps.LatLng(25.941991877144947, -80.16160583705641), 'travelMode': google.maps.DirectionsTravelMode.DRIVING},function(res,sts) {
+        if(sts=='OK')ren.setDirections(res);
+    })     
+}
+
+
+function save_waypoints()
+{
+    var w=[],wp;
+    var rleg = ren.directions.routes[0].legs[0];
+    data.start = {'lat': rleg.start_location.lat(), 'lng':rleg.start_location.lng()}
+    data.end = {'lat': rleg.end_location.lat(), 'lng':rleg.end_location.lng()}
+    var wp = rleg.via_waypoints
+    for(var i=0;i<wp.length;i++)w[i] = [wp[i].lat(),wp[i].lng()]
+    data.waypoints = w;
+     
+    var str = JSON.stringify(data)
+  
+    
+    var jax = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    jax.open('POST','');
+    jax.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+    jax.send('command=save&mapdata='+str)
+    jax.onreadystatechange = function(){ if(jax.readyState==4) {
+        if(jax.responseText.indexOf('bien')+1)alert('Updated');
+        else alert(jax.responseText)
+    }}
+    
+    
+}
+
+</script>
+</html>

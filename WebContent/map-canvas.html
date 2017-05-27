@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Secure Step Google Map</title>
+
+</head>
+<style>
+html, body,#map-canvas, #directions-canvas{
+height:600px;
+width:100%;
+}
+#geoLocation{
+height:80px;
+}
+
+#mapPage, #directionsPage{
+height:inherit;
+}
+
+
+
+</style>
+<body>
+	<div data-role="page" id="">
+		<div role="main" class="ui-content">
+			<p>GeoLocation Page</p>
+			<div id="geoLocation">
+			
+			</div>
+			<button id="getGeoLocation">Get GeoLocation</button>
+		</div>
+	</div>
+
+	<div data-role="page" id="mapPage">
+		<div role="main" class="ui-content">
+			<p>Map Page With Markers..</p>
+			<div id="map-canvas"></div>
+		</div>
+	</div>
+
+
+	<div id="map" id="directionsPage"></div>
+	<div id="right-panel">
+		<div>
+			<b>Start:</b> <select id="start">
+				<option value="Chennai Central Bus Stand">Chennai Central Bus Stand</option>
+				<option value="Alwarpet">Alwarpet</option>
+				<option value="Navalur">Navalur</option>
+			</select> <br> <b>Waypoints:</b> <br> <i>(Ctrl+Click or
+				Cmd+Click for multiple selection)</i> <br> 
+				
+				<select multiple id="waypoints">
+				<option value="Spencer Plaza ">Spencer Plaza</option>
+				<option value="Teynampet ">Teynampet</option>
+				<option value="Nandanam">Nandanam</option>
+				<option value="Saidapet ">Saidapet</option>
+				<option value="Guindy ">Guindy</option>
+				<option value="Pallavaram">Pallavaram</option>
+				<option value="Chromepet">Chromepet</option>
+				<option value="Tambaram sanitorium ">Sanitorium</option>
+				<option value="Tambaram ">Tambaram</option>
+				</select> 
+				
+				<br> <b>End:</b> <select id="end">
+				<option value="Pallikaranai">Pallikaranai</option>
+				<option value="Tambaram">Tambaram</option>
+
+			</select> <br> <input type="submit" id="submit">
+		</div>
+
+
+<script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwoEmCllYbtI7sZzpLfq4WVXWSvnC-7X8">
+	</script>
+
+	<script src="assets/js/GeoLocation.js"></script>
+</body>
+</html>

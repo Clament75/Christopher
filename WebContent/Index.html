@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Secure Step Google Map</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+	<div>
+		<h2 align="center"><i>Location Tracking Process</i></h2>
+		<label>City :</label>&nbsp;&nbsp; <input type="text" id="start"
+			style="width: 100px; height: 20px;" class="cityid" name="chennai"
+			value="Chennai" disabled>&nbsp;&nbsp; <label>Source :</label>&nbsp;&nbsp;
+		<select class="cityid" style="width: 100px; height: 20px;"
+			name="source">
+
+			<option value=''>Select</option>
+			<option value=''>Alwarpet</option>
+			<option value=''>Navalur</option>
+		</select>&nbsp;&nbsp; <label>Destination :</label>&nbsp;&nbsp; <input
+			type="text" id="end" class="cityid"
+			style="width: 100px; height: 20px;" name="destination"
+			Value="Pallikaranai" disabled>&nbsp;&nbsp; <input
+			type="submit" id="submit" value="Show Route" name="showroutebtn">
+	</div>
+	<br />
+	
+	<div id="mymap" style="width: 100%; height: 600px;"></div>
+
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwoEmCllYbtI7sZzpLfq4WVXWSvnC-7X8&callback=init"
+		&sensor="false">
+		
+	</script>
+
+	<script src="assets/js/script.js"></script>
+</body>
+</html>
